@@ -55,7 +55,6 @@ require (
 	go.etcd.io/bbolt v1.3.2
 	go.opencensus.io v0.22.0 // indirect
 	go.uber.org/zap v1.10.0
-	github.com/iotexproject/go-p2p v0.2.10
 	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5
 	golang.org/x/exp v0.0.0-20190510132918-efd6b22b2522 // indirect
 	golang.org/x/image v0.0.0-20190523035834-f03afa92d3ff // indirect
