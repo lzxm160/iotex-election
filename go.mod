@@ -32,7 +32,9 @@ require (
 	github.com/kr/pty v1.1.4 // indirect
 	github.com/libp2p/go-libp2p v0.0.21 // indirect
 	github.com/libp2p/go-libp2p-connmgr v0.0.3 // indirect
+	github.com/libp2p/go-libp2p-host v0.0.2 // indirect
 	github.com/libp2p/go-libp2p-peerstore v0.0.5
+	github.com/libp2p/go-libp2p-pubsub v0.0.1 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/mattn/go-colorable v0.1.2 // indirect
 	github.com/miekg/dns v1.1.13 // indirect
