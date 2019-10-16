@@ -283,7 +283,7 @@ func (ec *committee) fetchInBatch(tipHeight uint64) (
 	limiter := make(chan bool, ec.fetchInParallel)
 	results := map[uint64]*types.ElectionResult{}
 	errs := map[uint64]error{}
-	for nextHeight := ec.nextHeight; nextHeight <= ec.currentHeight-12; nextHeight += ec.interval {
+	for nextHeight := ec.nextHeight; nextHeight <= ec.currentHeight; nextHeight += ec.interval {
 		wg.Add(1)
 		go func(height uint64) {
 			defer func() {
