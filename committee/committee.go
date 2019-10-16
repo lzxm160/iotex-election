@@ -350,7 +350,7 @@ func (ec *committee) HeightByTime(ts time.Time) (uint64, error) {
 	// we return here is the last one before ts
 	lastUpdateTimestamp := atomic.LoadInt64(&ec.lastUpdateTimestamp)
 	if !time.Unix(lastUpdateTimestamp, 0).After(ts) {
-		return 10000000, db.ErrNotExist
+		return uint64(lastUpdateTimestamp), db.ErrNotExist
 	}
 	height := ec.heightManager.nearestHeightBefore(ts)
 	if height == 0 {
