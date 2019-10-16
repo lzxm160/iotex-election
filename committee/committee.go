@@ -284,6 +284,7 @@ func (ec *committee) fetchInBatch(tipHeight uint64) (
 	results := map[uint64]*types.ElectionResult{}
 	errs := map[uint64]error{}
 	for nextHeight := ec.nextHeight; nextHeight <= ec.currentHeight; nextHeight += ec.interval {
+		zap.L().Info("fetchInBatch", zap.Uint64("ec.currentHeight", ec.currentHeight), zap.Uint64("nextHeight", nextHeight))
 		wg.Add(1)
 		go func(height uint64) {
 			defer func() {
