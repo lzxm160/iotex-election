@@ -51,7 +51,7 @@ type Config struct {
 	CacheSize                  uint32   `yaml:"cacheSize"`
 	NumOfFetchInParallel       uint8    `yaml:"numOfFetchInParallel"`
 	SkipManifiedCandidate      bool     `yaml:"skipManifiedCandidate"`
-	GravityChainBatchSize           uint64   `yaml:"gravityChainBatchSize"`
+	GravityChainBatchSize      uint64   `yaml:"gravityChainBatchSize"`
 }
 
 // STATUS represents the status of committee
@@ -100,13 +100,13 @@ type committee struct {
 	cache         *resultCache
 	heightManager *heightManager
 
-	startHeight         uint64
-	nextHeight          uint64
-	currentHeight       uint64
-	lastUpdateTimestamp int64
-	terminate           chan bool
-	mutex               sync.RWMutex
-	gravityChainBatchSize    uint64
+	startHeight           uint64
+	nextHeight            uint64
+	currentHeight         uint64
+	lastUpdateTimestamp   int64
+	terminate             chan bool
+	mutex                 sync.RWMutex
+	gravityChainBatchSize uint64
 }
 
 // NewCommitteeWithKVStoreWithNamespace creates a committee with kvstore with namespace
@@ -169,7 +169,7 @@ func NewCommittee(kvstore db.KVStore, cfg Config) (Committee, error) {
 		interval:              cfg.GravityChainHeightInterval,
 		currentHeight:         0,
 		nextHeight:            cfg.GravityChainStartHeight,
-		gravityChainBatchSize:      gravityChainBatchSize,
+		gravityChainBatchSize: gravityChainBatchSize,
 	}, nil
 }
 
@@ -350,11 +350,11 @@ func (ec *committee) HeightByTime(ts time.Time) (uint64, error) {
 	// we return here is the last one before ts
 	lastUpdateTimestamp := atomic.LoadInt64(&ec.lastUpdateTimestamp)
 	if !time.Unix(lastUpdateTimestamp, 0).After(ts) {
-		return 0, db.ErrNotExist
+		return 10000000, db.ErrNotExist
 	}
 	height := ec.heightManager.nearestHeightBefore(ts)
 	if height == 0 {
-		return 0, db.ErrNotExist
+		return 20000000, db.ErrNotExist
 	}
 
 	return height, nil
