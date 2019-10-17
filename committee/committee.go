@@ -130,7 +130,7 @@ func NewCommittee(archive PollArchive, cfg Config) (Committee, error) {
 	}
 	carrier, err := carrier.NewEthereumVoteCarrier(
 		12,
-		time.Minute,
+		time.Second*10,
 		cfg.GravityChainAPIs,
 		common.HexToAddress(cfg.RegisterContractAddress),
 		common.HexToAddress(cfg.StakingContractAddress),
