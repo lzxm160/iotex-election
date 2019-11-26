@@ -373,7 +373,9 @@ func (ec *committee) HeightByTime(ts time.Time) (uint64, error) {
 	defer ec.mutex.RUnlock()
 	// Make sure that we already got a block after the timestamp, such that the height
 	// we return here is the last one before ts
-	return ec.archive.HeightBefore(ts)
+	hei, err := ec.archive.HeightBefore(ts)
+
+	return hei, err
 }
 
 func (ec *committee) RawDataByHeight(height uint64) ([]*types.Bucket, []*types.Registration, time.Time, error) {
