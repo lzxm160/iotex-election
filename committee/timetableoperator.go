@@ -78,8 +78,10 @@ func (operator *TimeTableOperator) TipHeight(sdb *sql.DB, tx *sql.Tx) (uint64, e
 // HeightBefore returns the Height before ts in the time table
 func (operator *TimeTableOperator) HeightBefore(ts time.Time, sdb *sql.DB, tx *sql.Tx) (height uint64, err error) {
 	if tx != nil {
+		fmt.Println("//////tx:", ts.String(), ":", operator.heightQuery)
 		err = tx.QueryRow(operator.heightQuery, ts, ts).Scan(&height)
 	} else {
+		fmt.Println("//////else:", ts.String(), ":", operator.heightQuery)
 		err = sdb.QueryRow(operator.heightQuery, ts, ts).Scan(&height)
 	}
 	return uint64(height), nil
